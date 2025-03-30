@@ -1,0 +1,320 @@
+:root {
+     --clr-bcg: #fff;
+     --clr-font: #282c35;
+     --clr-primary: #d23669;
+     --clr-hover: white;
+     --clr-main: #f1f5f9;
+     --clr-active: #d23669;
+     --clr-footer: #fff;
+   }
+   
+   .dark-theme {
+     --clr-bcg: #282c35;
+     --clr-font: #fff;
+     --clr-primary: #ffa7c4;
+     --clr-hover: white;
+     --clr-main: #808589;
+     --clr-active: #333;
+     --clr-footer: #282c35;
+   }
+
+   *{
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+   }
+   body{
+     width: 100%;
+     height: 100%;
+     
+   }
+
+.adminRoot{
+       width: 100%;
+       height: auto;
+  }
+
+.adminContainer{
+     width: 100%;
+     height: 100%;
+     display: grid;
+     grid-template-columns: 250px 1fr;    
+}
+.adminSidebar{
+      width: 100%;
+      height: 100%;
+      background: var(--clr-bcg);
+      padding: 15px 18px;
+      /* box-shadow: 0 0 5px 0 #ccc; */
+}
+.adminSidebar .logo h2{
+    letter-spacing: 2px;
+    padding-bottom: 10px;
+    color: var(--clr-font);
+}
+.adminSidebar div.links {
+      padding-top: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+}
+
+.adminSidebar .links a {
+    display: block;
+    padding: 10px 12px;
+    text-transform: capitalize;
+    color: var(--clr-font);
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+.adminSidebar .links a:hover{
+    background-color: var(--clr-active);
+    border-radius: 10px;
+    color: var(--clr-hover);
+}
+.adminSidebar .links a.active{
+     background-color: var(--clr-active);
+     color: var(--clr-font);
+     border-radius: 10px;
+}
+.adminMain{
+     width: 100%;
+     height: 100%;
+     background: var(--clr-main);
+     display: flex;
+     flex-direction: column;
+}
+.adminMain header{
+     background-color: var(--clr-bcg);
+     height: 80px;
+     display: flex;
+     justify-content: flex-end;
+     align-items: center;
+     
+}
+header .header-container{
+     margin-right: 16px;
+     display: flex;
+     gap: 20px;
+}
+.header-container .adminImage{
+     width: 30px;
+     height: 30px;
+     border-radius: 50%;
+     overflow: hidden;
+}
+.adminImage img{
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+}
+.header-container button {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.header-container button i {
+      font-size: 20px;
+      color: var(--clr-font);
+}
+
+
+.dashboardRoot{
+     width: 100%;
+     height: 90vh;
+}
+.dashboardContainer{
+      padding: 20px;
+}
+table{
+     width: 100%;
+     background-color: var(--clr-bcg);
+     border: 1px solid #ccc;
+     border-collapse: collapse;
+}
+th, td{
+     border: 1px solid #ccc;
+     text-align: center;
+     padding: 10px;
+}
+table td.deleteBtn {
+     cursor: pointer;
+     transition: all 0.2s ease;
+}
+td.deleteBtn i:hover{
+     color: red;
+}
+
+
+
+.addData {
+     width: 100%;
+}    
+.addData-container{
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+}
+.adminMainContent{
+     width: 100%;
+     height: 100%;
+}
+
+#dataForm{
+     width: 100%;
+     height: 100%;
+     border-radius: 15px;
+     display: grid;
+     grid-template-columns: repeat(2, 1fr);
+     gap: 8px;
+     background: var(--clr-bcg);
+     padding: 20px;
+     box-shadow: 0 0 5px 0 #ccc;
+}
+.form-group {
+     display: flex;
+     flex-direction: column;
+     gap: 8px 25px;
+}
+.form-group label{
+     font-size: 18px;
+     font-family: Arial, Helvetica, sans-serif;
+     letter-spacing: 2px;
+     font-weight: 700;
+     color: var(--clr-font);
+}
+.form-group input {
+      width: 100%;
+      padding: 10px 12px;
+      outline: none;
+      border: none;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+      background-color: var(--clr-bcg);
+      color: var(--clr-font);
+}
+input::placeholder{
+     color: var(--clr-font);
+}
+#dataForm button{
+     grid-column: 1/3;
+     border: none;
+     background: var(--clr-active);
+     color: white;
+     font-size: 18px;
+     padding: 10px 12px;
+     letter-spacing: 2px;
+     border-radius: 10px;
+     margin-top: 10px;
+}
+.footer{
+      width: 100%;
+      height: 10vh;
+      background-color: var(--clr-footer);
+}
+.footer .footer-container{
+      width: 90vw;
+      max-width: 1170px;
+      margin: 0 auto;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+}
+.footer .footer-container  p {
+       text-transform: capitalize;
+       letter-spacing: 1px;
+       font-size: 18px;
+       color: var(--clr-font);
+}
+ .settingRoot{
+      width: 100%;
+      height: 90vh;
+ }
+ .setting-container{
+       width: 100%;
+       height: 100%;
+       display: flex;
+       flex-direction: column;
+       gap: 20px;
+       padding: 20px;
+ }
+
+.changePassword, .changeEmail{
+      background: var(--clr-bcg);
+      height: 220px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px 0 var(--clr-bcg);
+}
+.changePassword h3, .changeEmail h3{
+      border-bottom: 1px solid #ccc;
+      padding: 15px;
+      color: var(--clr-font);
+  }
+  .changePasswordForm, .changeEmailForm{
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+  }
+  .changePasswordForm label, .changeEmailForm label {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--clr-font)
+  }
+  .changePasswordForm input, .changeEmailForm input{
+       padding: 10px 12px;
+       font-size: 16px;
+       border-radius: 10px;
+       outline: none;
+       border: none;
+       color: var(--clr-font);
+       background-color: var(--clr-bcg);
+       border: 1px solid #ccc;
+  }
+  .changePasswordForm button, .changeEmailForm button{
+       padding: 10px 12px;
+       border: none;
+       border: 1px solid #ccc;
+       border-radius: 10px;
+       background-color: var(--clr-active);
+       color: var(--clr-font);
+       font-size: 16px;
+       text-transform: capitalize;
+       cursor: pointer;
+  }
+
+
+@media screen and (max-width: 640px) {
+    .adminRoot{
+      height: auto;
+      background: red;
+    }
+    .dashboardRoot{
+        width: 100vw;
+        overflow: hidden;
+    }
+   .dashboardContainer table{
+        width: 320px;
+        overflow: hidden;
+        overflow-x: auto;
+    }
+     .adminContainer{
+          grid-template-columns: 1fr !important;
+          gap: 0;
+     }   
+     #dataForm{
+           grid-template-columns: 1fr !important;
+           gap: 15px 0;
+     } 
+     #dataForm button{
+           grid-column: 1;
+     }
+}
+
