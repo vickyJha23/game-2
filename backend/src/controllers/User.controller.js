@@ -3,7 +3,7 @@ const { handleHashPassword, comparePasswordHandler } = require("../utilities/Use
 
 
 const registerUser = async (req, res, next) => {
-      const { userName, email, password, role } = req.body;
+      const { userName, email, password, profilePicture, role } = req.body;
        try {
             const isUserAlreadyExist = await User.findOne({ email })          
             if(isUserAlreadyExist){
@@ -19,13 +19,10 @@ const registerUser = async (req, res, next) => {
                 password: hashedPassword,
                 role
              })
-             await user.save();
-             const modifiedUser = user.toObject();
-             delete modifiedUser.password              
+             await user.save();              
              res.status(201).json({
                    message: "User registered successfully",
                    status: 201,
-                   user: modifiedUser
              })
         } catch (error) {
              console.error("Error in user registration", error)

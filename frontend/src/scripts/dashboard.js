@@ -1,8 +1,8 @@
 export default function dashboard ()  {
     return `
-    <div class="dashboardRoot">
         <div class="dashboardContainer">
-              <table>
+            <div class="table-content">
+                   <table>
                    <thead>
                         <tr>
                            <th>Date</th>
@@ -40,7 +40,7 @@ export default function dashboard ()  {
                         </tr>                   
                </tbody>
             </table>
+            </div>
         </div>
-    </div>
    `
 }

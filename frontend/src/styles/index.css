@@ -263,3 +263,9 @@ tbody tr td:first-child{
           flex: 20%;
     }
 }
+input[type="date"]::-webkit-calendar-picker-indicator,
+  input[type="time"]::-webkit-calendar-picker-indicator {
+      filter: invert(50%) sepia(100%) saturate(500%) hue-rotate(180deg);
+      cursor: pointer;
+
+  }

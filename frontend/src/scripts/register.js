@@ -1,47 +1,55 @@
-import "../register.css";
+const form = document.querySelector(".registerForm");
+const spinner = document.querySelector(".spinner-wrapper");
+const submitButton = document.querySelector(".registerForm button");
 
-function register () {
-    return `
-      <div class="registerRoot">
-          <div class="registerContainer">
-               <h1>
-                  sign up
-               </h1>
-               <form class="registerForm">
-                    <div>
-                         <label for="username">
-                           username
-                         </label>               
-                         <input type="text" id="username" name="username" placeholder="Enter username"/>
-                    </div>               
-                    <div>
-                         <label for="email">
-                           email
-                         </label>               
-                         <input type="email" id="email" placeholder="Enter email" />
-                    </div>               
-                    <div>
-                         <label for="password">
-                            password
-                         </label>               
-                         <input type="password" id="password" placeholder="Enter password"/>
-                    </div>
-                    <div>
-                         <label for="role">
-                            role
-                         </label>
-                         <select id="role">
-                            <option value="admin">admin</option>
-                        </select>
-                    </div>       
-                    <button type="button">
-                       submit
-                    </button>        
-               </form>
-           </div>
-      </div>
-    `    
+
+form.addEventListener("submit", async (e) => {
+     e.preventDefault();
+     const formData = new FormData(e.target);
+     const formObject = Object.fromEntries(formData);
+     spinner.style.display = "block";
+     console.log("cdbjkfdfhjdhf");
+     submitButton.disabled = true;
+    try {
+      const response = await fetch("http://localhost:8000/api/v1/user", {
+          method: "POST",
+          headers: {
+             "Content-Type": "application/json"
+          },
+          body: JSON.stringify(formObject)
+      });     
+      if(!response.ok){
+          const errorData = await response.json();
+           handleNotification("showNotification", "error", errorData.message || errorData.error.message);
+       }
+       const data = await response.json();
+          handleNotification("showNotification", "success", data.message);
+    } catch (error) {
+          console.log(error);
+          handleNotification("showNotification", "error", error.message);
+    }
+    finally{
+          spinner.style.display = "none";
+          submitButton.disabled = false;
+    }
+})
+
+function handleNotification (notificationClass, heighLighterClass, message) {
+     console.log()
+     const notification = document.querySelector(".notification");
+     const heightLighter = document.querySelector(".heighLighter");
+     const messageDisplayer = document.querySelector(".message");
+      if(!notification || !heightLighter  || !messageDisplayer) {
+          return console.log("One or more elements needed");
+      }
+
+     if(notificationClass && heighLighterClass && message){
+          notification.classList.add(notificationClass);
+          heightLighter.classList.add(heighLighterClass);
+          messageDisplayer.textContent = message;
+          setTimeout(() => {
+               notification.classList.remove(notificationClass);
+          }, 2000)
+     }
+     return; 
 }
-
-
-export default register

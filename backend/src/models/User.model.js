@@ -1,3 +1,4 @@
+const { string, required } = require("joi");
 const mongoose = require("mongoose");
 
 
@@ -8,20 +9,22 @@ const userSchema =  new mongoose.Schema({
          unique: true,
          trim: true
       },
-
       email: {
          type: String,
          required: true,
          lowercase: true,
          unique: true
       },
-
       password: {
            type:String,
            required: true,
-           minlength: 6
+           minlength: 6,
+           maxlength: 12
       },
-
+      profilePicture: {
+         type: string,
+          required:true
+      },
       role: {
          type: String,
          enum: ["admin"],
