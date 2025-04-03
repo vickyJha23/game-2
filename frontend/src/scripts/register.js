@@ -8,22 +8,19 @@ form.addEventListener("submit", async (e) => {
      const formData = new FormData(e.target);
      const formObject = Object.fromEntries(formData);
      spinner.style.display = "block";
-     console.log("cdbjkfdfhjdhf");
      submitButton.disabled = true;
     try {
-      const response = await fetch("http://localhost:8000/api/v1/user", {
+      const response = await fetch("http://localhost:8000/api/v1/user/register", {
           method: "POST",
-          headers: {
-             "Content-Type": "application/json"
-          },
-          body: JSON.stringify(formObject)
+          body: formData
       });     
-      if(!response.ok){
-          const errorData = await response.json();
-           handleNotification("showNotification", "error", errorData.message || errorData.error.message);
-       }
-       const data = await response.json();
-          handleNotification("showNotification", "success", data.message);
+      console.log(await response.json());
+    //   if(!response.ok){
+    //       const errorData = await response.json();
+    //        handleNotification("showNotification", "error", errorData.message || errorData.error.message);
+    //    }
+    //    const data = await response.json();
+    //       handleNotification("showNotification", "success", data.message);
     } catch (error) {
           console.log(error);
           handleNotification("showNotification", "error", error.message);

@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development nodemon ./server.js"
+    "start": "cross-env NODE_ENV=development nodemon ./server.js",
+    "prettier:check": "npx prettier . --check",
+    "prettier:format": "npx prettier . --write"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +26,7 @@
     "multer-storage-cloudinary": "^4.0.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "prettier": "3.5.3"
   }
 }
