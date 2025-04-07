@@ -1,6 +1,4 @@
 import routeHandler from "../utils/adminRoute.js";
-
-
 const toggleBtn = document.querySelector(".toggleBtn");
 toggleBtn.addEventListener("click", () => {
     document.documentElement.classList.toggle("dark-theme")
@@ -19,12 +17,13 @@ window.addEventListener("DOMContentLoaded", () => {
              }
              const href = e.target.getAttribute("href"); 
               routeHandler(href);  
-
         })
      })
      const adminImage = document.querySelector(".adminImage img");
      const admin = JSON.parse(localStorage.getItem("user"));
      if(admin){
          adminImage.src = admin.profilePicture;
-     }     
+     }
+      
 })
+

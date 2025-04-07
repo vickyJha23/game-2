@@ -1,21 +1,11 @@
-const displayData = (data) => {
-     if(!data) {
-          return null;
-     }
-     if(resultDate.innerHTML !== "") {
-          resultDate.innerHTML = "";
-     }
-      const resultDate = document.querySelector(".resultDate");
-      resultDate.innerHTML = data.data.date;
-      const table = document.querySelector("table");
-      const tableBody = table.querySelector("tbody");
-        if(tableBody.innerHTML !== "") {
-               tableBody.innerHTML = "";
-        }
-        const tableData = data.data.map((item) => {
-                
-        });
-      
+const displayData = (resultContainer, tableBody, resultDate, data) => {
+    if(!data.data){
+         resultContainer.innerHTML = `<p style="text-align:center; height: 20vh; display: flex; justify-content: center; align-items: center; font-size: 18px;">
+            ${data.message}
+         </p>`
+    }
+
+    
 }
 
 

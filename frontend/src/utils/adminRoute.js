@@ -3,7 +3,7 @@ import addData from "../scripts/addData.js";
 import setting from "../scripts/setting.js";
 
 
-
+import addDataHandler from "../utils/addDataHandler.js";
 
 const routes = {
     "/dashboard": dashboard,
@@ -12,10 +12,12 @@ const routes = {
 }
 
 
-
 const routeHandler = (url) => {
      const page = routes[url] || dashboard;
      document.querySelector(".adminMainContent").innerHTML = page();
+     if(url === "/add-data"){
+           addDataHandler();
+     }
 }
 
 export default routeHandler;
