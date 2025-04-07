@@ -1,16 +1,16 @@
  const fetchData =  async (url) => {
       try {
-          const response = await fetch (url, {
-             method: "GET",
-          });
+          console.log(url);
+          const response = await fetch (url);
           if(!response.ok){
                const errorData = await response.json();
-               alert(errorData.error.message);
+               return errorData;
            }
            const data = await response.json();
            return data; 
       } catch (error) {
            console.log("Error fetching data", error);
+           throw error
       }
 }
 

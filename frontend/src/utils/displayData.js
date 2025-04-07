@@ -2,10 +2,10 @@ const displayData = (data) => {
      if(!data) {
           return null;
      }
-     const resultDate = document.querySelector(".resultDate");
      if(resultDate.innerHTML !== "") {
           resultDate.innerHTML = "";
      }
+      const resultDate = document.querySelector(".resultDate");
       resultDate.innerHTML = data.data.date;
       const table = document.querySelector("table");
       const tableBody = table.querySelector("tbody");

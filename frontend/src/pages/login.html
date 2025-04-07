@@ -13,31 +13,38 @@
                 login
              </h1>
              <form class="loginForm">               
-                  <div>
+                  <div class="loginFormInput">
                        <label for="email">
                          email
                        </label>               
-                       <input type="email" id="email" placeholder="Enter email" />
+                       <input type="email" id="email" name="email" placeholder="Enter email" />
                   </div>               
-                  <div>
+                  <div class="loginFormInput">
                        <label for="password">
                           password
                        </label>               
-                       <input type="password" id="password" placeholder="Enter password"/>
+                       <input type="password" id="password" name="password" placeholder="Enter password"/>
                   </div>
-                  <div>
-                       <label for="role">
-                          role
-                       </label>
-                       <select id="role">
-                          <option value="admin">admin</option>
-                      </select>
-                  </div>       
-                  <button type="button">
+                  <p style="font-size: 16px; color: white;">
+                      Don't have an account?
+                     <a href="register.html" style="text-decoration: none; color: skyblue;"> Register</a>
+                  </p>
+                  <button type="submit" class="loginButton">
                      submit
+                     <div class="spinner-wrapper">
+                         <span class="spinner">
+
+                         </span>
+                     </div>
                   </button>        
              </form>
          </div>
     </div>
+    <div class="notification">
+      <p class="heighLighter"></p>
+      <p class="message">
+      </p>   
+   </div>
+    <script type="module" src="../scripts/login.js" defer></script>
 </body>
 </html>

@@ -116,11 +116,11 @@ input::-webkit-file-upload-button{
      height: 50px;
      position: fixed;
      top: 10px;
-     right: 0;
+     right: 0px;
      overflow: hidden;
      transition: all 1s ease-in-out;
      transform: translateX(100%);
-     border-radius: 10px 0 0 10px;
+     border-radius: 10px;
 }
 
 .notification p:first-child{
@@ -170,4 +170,5 @@ input::-webkit-file-upload-button{
 }
 .showNotification {
       transform: translateX(0);
+       right: 5px;
 }

@@ -1,11 +1,16 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const userRouter = require('./src/routes/User.route');
-
+const authRouter = require('./src/routes/auth.route');
+const resultRouter = require("./src/routes/gameResult.route");
 // initialize express
+
+
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: "http://127.0.0.1:5500",
+    credentials: true
+}));
 app.use(
   express.json({
     limit: '1MB',
@@ -20,7 +25,10 @@ app.use(
 app.use(cookieParser());
 
 // here the route setup will work
-app.use('/api/v1/user', userRouter);
+app.use('/api/v1/auth', authRouter);
+app.use("/api/v1/game-results", resultRouter);
+
+
 
 // global error handler
 app.use((error, req, res, next) => {

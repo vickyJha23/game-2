@@ -22,5 +22,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
         })
      })
-     
+     const adminImage = document.querySelector(".adminImage img");
+     const admin = JSON.parse(localStorage.getItem("user"));
+     if(admin){
+         adminImage.src = admin.profilePicture;
+     }     
 })

@@ -1,41 +1,52 @@
-import "../login.css";
+import  { handleNotification } from "./notification.js";
 
-function login () {
-    return `
-      <div class="loginRoot">
-          <div class="loginContainer">
-               <h1>
-                  login
-               </h1>
-               <form class="loginForm">               
-                    <div>
-                         <label for="email">
-                           email
-                         </label>               
-                         <input type="email" id="email" placeholder="Enter email" />
-                    </div>               
-                    <div>
-                         <label for="password">
-                            password
-                         </label>               
-                         <input type="password" id="password" placeholder="Enter password"/>
-                    </div>
-                    <div>
-                         <label for="role">
-                            role
-                         </label>
-                         <select id="role">
-                            <option value="admin">admin</option>
-                        </select>
-                    </div>       
-                    <button type="button">
-                       submit
-                    </button>        
-               </form>
-           </div>
-      </div>
-    `    
+
+const loginForm = document.querySelector(".loginForm");
+const loginButton = document.querySelector(".loginForm button");
+const spinner = document.querySelector(".spinner-wrapper");
+const loginHandler =  async (e) => {
+    e.preventDefault();
+    let isValid = true;
+    const formData = new FormData(e.target);  
+    const objectEntries = Object.fromEntries(formData.entries());
+    if(objectEntries.email === "" || objectEntries.password === ""){
+         isValid = false;
+           handleNotification("showNotification", "error", "Please fill all the fields");
+         return;
+    }
+    if(isValid){
+     loginButton.disabled = true;
+     spinner.style.display = "block";
+     try {
+          const response = await fetch("http://localhost:8000/api/v1/auth/login", {
+               method: "POST",
+               headers: {
+                   "Content-Type":"application/json",
+               },
+               body: JSON.stringify(objectEntries),
+              credentials: "include",
+          })
+          if(!response.ok){
+               const errorData = await response.json();
+               return handleNotification("showNotification", "error", errorData.message || errorData.error.message);
+          } 
+          const data = await response.json();
+          console.log("data from login handler", data);
+          localStorage.setItem("user", JSON.stringify(data.user));
+          window.location.href = "http://127.0.0.1:5500/frontend/src/pages/admin.html";
+          handleNotification("showNotification", "success", data.message);
+       } catch (error) {
+            console.log("error in login handler", error);
+             handleNotification("showNotification", "error", error.message);
+       }
+       finally {
+          loginButton.disabled = false;
+          spinner.style.display = "none";
+       }    
+   }
+    
 }
 
 
-export default login
+
+loginForm.addEventListener("submit", loginHandler)
