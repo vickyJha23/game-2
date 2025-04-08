@@ -16,7 +16,8 @@ const initialize = async () => {
       const data = await fetchData(`http://localhost:8000/api/v1/game-results/get-currentresult?date=${currentDate}`);
       displayData(resultContainer, resultDate, tableBody, data);
     } catch (error) {
-        resultContainer.innerHTML = `<p style="text-align:center; height: 20vh; display: flex; justify-content: center; align-items: center; font-size: 18px; text-transform: capitalize; letter-spacing: 2px;"
+        resultContainer.innerHTML = `<p style="text-align:center; height: calc(100vh - 337px); display: flex; justify-content: center; align-items: center; font-size: 25px; text-transform: capitalize; letter-spacing: 2px; color:red;
+        "
         >${error.message}</p>`
     }
     finally{

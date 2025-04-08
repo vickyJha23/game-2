@@ -6,7 +6,7 @@ toggleBtn.addEventListener("click", () => {
 
 window.addEventListener("DOMContentLoaded", () => {
      const links = [...document.querySelectorAll(".links a")];
-      routeHandler(links[0].href)
+      routeHandler(links[0].getAttribute("href"))
      links.forEach((link) =>{
         link.addEventListener("click", (e) => {
              e.preventDefault();

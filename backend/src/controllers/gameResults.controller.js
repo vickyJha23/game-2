@@ -9,6 +9,7 @@ const addGameResult = async (req, res, next) => {
         time,
         XA,XB,XC,XD,XE,XF,XG,XH,XI,XJ
       } = req.body;
+      console.log(req.body);
       const {_id } = req.user
      try {
         const gResult = new gameResult({
