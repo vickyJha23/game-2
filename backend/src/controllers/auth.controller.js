@@ -73,20 +73,19 @@ const loginUser = async (req, res, next) => {
     res.cookie("accessToken", accessToken, {
         httpOnly: true,
         secure: true,
-        sameSite: "Lax",
+        sameSite: "none",
         maxAge: 1000 * 60 * 60, // 60 minutes
     }) 
     res.cookie("refreshToken", refreshToken, {
        httpOnly: true,
        secure: true,
-        sameSite: "Lax",
+       sameSite:"none", // when you are on the cross-site need say this none
        maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
     })
     res.status(200).json({
        message:"User logged in successfully",
        status: true,
-        statusCode: 200,
-        user: userWithoutPassword,
+       statusCode: 200,
     })
   } catch (error) {
     console.log('Error in login', error);
@@ -192,4 +191,30 @@ const changeEmail = async (req, res, next) => {
         }
 } 
 
-module.exports = { registerUser, loginUser, logoutUser, changePassword, changeEmail };
+const getUserProfile = async (req, res, next) => {
+       const { _id } = req.user;
+       try {
+           const user = await User.findById(_id);
+           if(!user){
+               return res.status(404).json({
+                    message: "User not found",
+                    status: false,
+                    statusCode: 404
+               })
+           }
+
+           res.status(200).json({
+                message: "User fetched successfully",
+                status: true,
+                statusCode: 200,
+                data: user
+           })
+        
+       } catch (error) {
+           console.error("Error in get UserProfile", error);
+           next(error);
+       }  
+}
+
+
+module.exports = { registerUser, loginUser, logoutUser, changePassword, changeEmail, getUserProfile };

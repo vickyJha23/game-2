@@ -18,6 +18,7 @@ const addDataHandler = () => {
                       headers: {
                           "Content-Type": "application/json"
                       },
+                      credentials: "include",
                       body: JSON.stringify(formObject) 
                   })
                   console.log(response);     
@@ -29,8 +30,8 @@ const addDataHandler = () => {
                        return alert(errorData.message || errorData.error.message);     
                   }
                   const data = await response.json();
-                  console.log(data);
                   alert(data.message);
+                  e.target.reset();
              } catch (error) {
                console.log(error);
                    alert(error.message);

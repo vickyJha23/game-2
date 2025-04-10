@@ -23,18 +23,20 @@ const loginHandler =  async (e) => {
                headers: {
                    "Content-Type":"application/json",
                },
+               credentials: "include",
                body: JSON.stringify(objectEntries),
-              credentials: "include",
           })
           if(!response.ok){
                const errorData = await response.json();
                return handleNotification("showNotification", "error", errorData.message || errorData.error.message);
           } 
           const data = await response.json();
-          console.log("data from login handler", data);
-          localStorage.setItem("user", JSON.stringify(data.user));
-          window.location.href = "http://127.0.0.1:5500/frontend/src/pages/admin.html";
-          handleNotification("showNotification", "success", data.message);
+           if(data.status){
+                handleNotification("showNotification", "success", data.message);
+                setTimeout(() => {
+                    window.location.href = "http://127.0.0.1:5500/frontend/src/pages/admin.html";
+                }, 3000)
+           }
        } catch (error) {
             console.log("error in login handler", error);
              handleNotification("showNotification", "error", error.message);

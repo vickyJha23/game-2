@@ -15,43 +15,43 @@ const gameResultSchema = new mongoose.Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref:"User"
     },
-    XA: {
+    xa: {
       type: String,
       required: true,
     },
-    XB: {
+    xb: {
       type: String,
       required: true,
     },
-    XC: {
+    xc: {
       type: String,
       required: true,
     },
-    XD: {
+    xd: {
       type: String,
       required: true,
     },
-    XE: {
+    xe: {
       type: String,
       required: true,
     },
-    XF: {
+    xf: {
       type: String,
       required: true,
     },
-    XG: {
+   xg: {
       type: String,
       required: true,
     },
-    XH: {
+    xh: {
       type: String,
       required: true,
     },
-    XI: {
+    xi: {
       type: String,
       required: true,
     },
-    XJ: {
+    xj: {
       type: String,
       required: true,
     },

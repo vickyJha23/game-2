@@ -17,7 +17,7 @@ resultRouter.get("/get-result", authenticateUser, checkRole("admin"), getGameRes
 
 resultRouter.get("/get-currentresult", currentGameResultsValidator, getCurrentGameResults);
 
-resultRouter.get("/get-rangeresult", RangeOfDateGameResultsValidator, getRangeOfGameResults);
+resultRouter.get("/search-result", RangeOfDateGameResultsValidator, getRangeOfGameResults);
 
 
 

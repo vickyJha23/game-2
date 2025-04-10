@@ -18,8 +18,8 @@ const routes = {
 const routeHandler = (url) => {
      const page = routes[url] || dashboard;
      document.querySelector(".adminMainContent").innerHTML = page();
-     if(url === "/dashboard"){
-         return  dashboardHandler();
+     if(url === "/dashboard"){        
+       return dashboardHandler();
      }
      if(url === "/add-data"){
            return addDataHandler();

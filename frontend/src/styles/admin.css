@@ -6,6 +6,7 @@
   --clr-main: #f1f5f9;
   --clr-active: #d23669;
   --clr-footer: #fff;
+  --login-clr: rgb(205,133,63);
 }
 
 .dark-theme {
@@ -16,6 +17,7 @@
   --clr-main: #808589;
   --clr-active: #333;
   --clr-footer: #282c35;
+  --login-clr: #73777f;
 }
 
 * {
@@ -93,6 +95,15 @@ header .header-container {
   height: 30px;
   border-radius: 50%;
   overflow: hidden;
+}
+.adminLink{
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 18px;
+    background: var(--login-clr);
+    padding: 8px 16px;
+    color: white;
+    border-radius: 10px;
 }
 .adminImage img {
   width: 100%;

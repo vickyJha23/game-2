@@ -7,16 +7,15 @@ const addGameResult = async (req, res, next) => {
       const {
         date, 
         time,
-        XA,XB,XC,XD,XE,XF,XG,XH,XI,XJ
+        xa,xb,xc,xd,xe,xf,xg,xh,xi,xj
       } = req.body;
-      console.log(req.body);
       const {_id } = req.user
      try {
         const gResult = new gameResult({
             date: new Date(date),
             time,
             creatorId: _id,
-            XA,XB,XC,XD,XE,XF,XG,XH,XI,XJ
+            xa,xb,xc,xd,xe,xf,xg,xh,xi,xj
           });
           await gResult.save()
     
@@ -91,16 +90,16 @@ const getGameResults = async (req, res, next) => {
                     _id:1,
                     date: 1,
                     time: 1,
-                    XA: 1,
-                    XB: 1,
-                    XC: 1,
-                    XD: 1,
-                    XE: 1,
-                    XF: 1,
-                    XG: 1,
-                    XH: 1,
-                    XI: 1,
-                    XJ: 1,
+                    xa: 1,
+                    xb: 1,
+                    xc: 1,
+                    xd: 1,
+                    xe: 1,
+                    xf: 1,
+                    xg: 1,
+                    xh: 1,
+                    xi: 1,
+                    xj: 1,
                     creator: {
                         _id: 1,
                         userName:1,
@@ -131,7 +130,6 @@ const getGameResults = async (req, res, next) => {
 }
 const getCurrentGameResults = async (req, res, next) => {
       const { date } =  req.query;
-      console.log(date);
       try {
           const currentGameResult = await gameResult.find({date});
           console.log(currentGameResult);
@@ -156,6 +154,7 @@ const getCurrentGameResults = async (req, res, next) => {
 
 const getRangeOfGameResults = async (req, res, next) => {
      const {startDate, endDate} = req.query;
+     console.log(startDate, endDate);
      try {
           const gResult = await gameResult.aggregate([{
             $match: {
@@ -164,9 +163,9 @@ const getRangeOfGameResults = async (req, res, next) => {
                       $lte: new Date(endDate)
                  }
             }
-        },
+        },  
           ])
-          if(!gResult){
+          if(gResult.length === 0){
                return res.status(404).json({
                 message: "No Game Result Found",
                 status: false,

@@ -1,8 +1,9 @@
  const fetchData =  async (url) => {
       try {
-          console.log(url);
-          const response = await fetch (url);
-          console.log(await response.json());
+          const response = await fetch (url, {
+               method: 'GET',
+               credentials: "include"
+          });
           if(!response.ok){
                const errorData = await response.json();
                return errorData;

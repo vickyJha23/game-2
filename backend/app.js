@@ -3,14 +3,24 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const authRouter = require('./src/routes/auth.route');
 const resultRouter = require("./src/routes/gameResult.route");
+const rateLimit = require("express-rate-limit");
 // initialize express
 
 
 const app = express();
 app.use(cors({
-    origin: "http://127.0.0.1:5500",
-    credentials: true
+  origin: "http://127.0.0.1:5500", // or wherever your frontend is served from
+  credentials: true
 }));
+
+app.use(rateLimit({
+   windowMs: 15 * 60 * 1000,
+   limit: 100,
+   message: "Too many requests, please try again later.",
+   standardHeaders: true,
+   legacyHeaders: false
+}))
+
 app.use(
   express.json({
     limit: '1MB',

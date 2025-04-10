@@ -2,6 +2,7 @@ import fetchData from "./fetchData.js"
 
 
 const dashboardHandler = async () => {
+    console.log("Har Har Mahadev");
     const tableContent = document.querySelector(".dashboardContainer .table-content");
     const tableBody = document.querySelector(".table-content table tbody");
     const loaderWrapper = document.querySelector(".loader-wrapper");
@@ -11,7 +12,7 @@ const dashboardHandler = async () => {
                const tableBodyContent = data.data.map((item) => {
                      return `
                          <tr data-id="${item._id}">
-                           <td>${item.date}</td>
+                           <td>${item.date.split("T")[0]}</td>
                            <td>${item.time}</td>
                            <td>${item.xa}</td>
                            <td>${item.xb}</td>
@@ -30,16 +31,51 @@ const dashboardHandler = async () => {
                      `
                })      
                tableBody.innerHTML = tableBodyContent.join(" ");
+               const deleteBtns = [...document.querySelectorAll(".deleteBtn")];
+               let canDelete = true;
+               deleteBtns.forEach((deleteBtn) => {
+                    deleteBtn.addEventListener("click", async (e) => {
+                         if(!canDelete) return;
+                          canDelete = false;
+                          const parent = e.currentTarget.parentElement;
+                          const parentId = parent.dataset.id;
+                          if(parentId){
+                               try { 
+                                   const res = await fetch(`http://localhost:8000/api/v1/game-results/delete-result/${parentId}`, {
+                                        method: "DELETE",
+                                        credentials: "include"
+                                   });
+                                   console.log(await res.json())
+                                   if(res.ok){
+                                        parent.parentNode.removeChild(parent);
+                                   }    
+
+                               } catch (error) {
+                                   console.error("Error: while trying to delete", error);
+                                   
+                               }   
+                               finally{
+                                      setTimeout(() => {
+                                        canDelete = true;
+                                      }, 1000)
+                               }
+                           
+
+                          }
+                    })
+               })
           }
           else{
-            tableContent.innerHTML = `<p style="width: 100%; text-align:center; height: calc(100vh - 337px); display: flex; justify-content: center; align-items: center; font-size: 25px; text-transform: capitalize; letter-spacing: 2px; color:red;
-            "
-            >${data.message}</p>`       
+            tableBody.innerHTML = `<tr style="width: 100%; height: calc(100vh - 337px)"
+            ><td colspan="13" style="font-size: 20px; font-family: Arial, Helvetica, sans-serif; color:red;">
+            ${data.message}
+            </td></tr>`       
           }
      } catch (error) {
-         tableContent.innerHTML = `<p style="width: 100%; text-align:center; height: calc(100vh - 337px); display: flex; justify-content: center; align-items: center; font-size: 25px; text-transform: capitalize; letter-spacing: 2px; color:red;
-        "
-        >${error.message}</p>`
+          tableBody.innerHTML = `<tr style="width: 100%; height: calc(100vh - 337px)"
+          ><td colspan="13" style="font-size: 20px; font-family: Arial, Helvetica, sans-serif; color:red;">
+          ${error.message}
+          </td></tr>`
      }
      finally{
           loaderWrapper.style.display="none";

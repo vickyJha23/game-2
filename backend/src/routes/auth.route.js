@@ -1,6 +1,6 @@
 const express = require('express');
 const { registerUserValidator, loginValidator, changePasswordValidator, changeEmailValidator } = require('../validators/auth.validator');
-const { registerUser, loginUser, logoutUser, changePassword, changeEmail } = require('../controllers/auth.controller');
+const { registerUser, loginUser, logoutUser, changePassword, changeEmail, getUserProfile } = require('../controllers/auth.controller');
 const upload = require('../middlewares/upload.middleware');
 const { authenticateUser } = require("../middlewares/auth.middleware");
 const authRouter = express.Router();
@@ -28,7 +28,7 @@ authRouter.patch("/change-password", authenticateUser, changePasswordValidator,
 );
   
 authRouter.patch("/change-email", authenticateUser, changeEmailValidator, changeEmail)
-
+authRouter.get("/get-profile", authenticateUser, getUserProfile)
 
 
 module.exports = authRouter;
